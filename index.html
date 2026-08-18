@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<title>R语言语法学习助手</title>
+
+<style>
+body{
+    margin:0;
+    font-family:"Microsoft YaHei",sans-serif;
+    display:flex;
+    height:100vh;
+    background:#f5f7fa;
+}
+
+#menu{
+    width:260px;
+    background:#20232a;
+    color:white;
+    padding:20px;
+}
+
+#menu h2{
+    text-align:center;
+}
+
+.item{
+    padding:12px;
+    margin:8px 0;
+    background:#343a40;
+    border-radius:6px;
+    cursor:pointer;
+}
+
+.item:hover{
+    background:#007bff;
+}
+
+
+#content{
+    flex:1;
+    padding:30px;
+    overflow:auto;
+}
+
+.card{
+    background:white;
+    padding:20px;
+    border-radius:10px;
+    box-shadow:0 3px 10px #ccc;
+}
+
+code{
+    background:#272822;
+    color:#f8f8f2;
+    display:block;
+    padding:15px;
+    border-radius:8px;
+    white-space:pre;
+}
+
+h3{
+    color:#007bff;
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<div id="menu">
+
+<h2>R语言目录</h2>
+
+<div class="item" onclick="show('variable')">
+变量与数据类型
+</div>
+
+<div class="item" onclick="show('if')">
+判断语句
+</div>
+
+<div class="item" onclick="show('loop')">
+循环
+</div>
+
+<div class="item" onclick="show('function')">
+函数
+</div>
+
+<div class="item" onclick="show('vector')">
+向量
+</div>
+
+<div class="item" onclick="show('matrix')">
+矩阵
+</div>
+
+<div class="item" onclick="show('dataframe')">
+数据框
+</div>
+
+<div class="item" onclick="show('file')">
+文件读写
+</div>
+
+<div class="item" onclick="show('apply')">
+apply族函数
+</div>
+
+</div>
+
+
+
+<div id="content">
+
+<div class="card">
+
+<h1>R语言语法学习助手</h1>
+
+<p>
+点击左侧目录学习不同功能的R语言语法。
+</p>
+
+</div>
+
+</div>
+
+
+
+<script>
+
+
+let data={
+
+
+variable:`
+
+<h2>变量与数据类型</h2>
+
+<h3>语法</h3>
+
+<code>
+变量名 <- 数据
+
+x <- 10
+name <- "Tom"
+</code>
+
+<h3>说明</h3>
+
+R语言使用 <- 创建变量。
+
+常见数据类型：
+<ul>
+<li>numeric 数值</li>
+<li>character 字符</li>
+<li>logical 逻辑</li>
+<li>factor 因子</li>
+</ul>
+
+
+<h3>案例</h3>
+
+<code>
+age <- 20
+student <- TRUE
+
+print(age)
+print(student)
+</code>
+
+`,
+
+
+if:`
+
+<h2>判断语句</h2>
+
+
+<h3>if结构</h3>
+
+<code>
+if(条件){
+    执行代码
+}else{
+    执行其他代码
+}
+</code>
+
+
+<h3>案例</h3>
+
+<code>
+score <- 85
+
+if(score >= 60){
+ print("及格")
+}else{
+ print("不及格")
+}
+
+</code>
+
+`,
+
+
+loop:`
+
+<h2>循环</h2>
+
+
+<h3>for循环</h3>
+
+<code>
+for(变量 in 序列){
+    执行代码
+}
+</code>
+
+
+<h3>案例</h3>
+
+<code>
+
+for(i in 1:5){
+ print(i)
+}
+
+</code>
+
+
+<h3>while循环</h3>
+
+<code>
+
+i <- 1
+
+while(i<=5){
+ print(i)
+ i <- i+1
+}
+
+</code>
+
+`,
+
+
+function:`
+
+<h2>函数</h2>
+
+
+<h3>创建函数</h3>
+
+
+<code>
+
+函数名 <- function(参数){
+
+代码
+
+return(结果)
+
+}
+
+</code>
+
+
+<h3>案例</h3>
+
+<code>
+
+add <- function(a,b){
+
+return(a+b)
+
+}
+
+
+add(3,5)
+
+</code>
+
+`,
+
+
+vector:`
+
+<h2>向量</h2>
+
+
+<h3>创建向量</h3>
+
+<code>
+
+x <- c(1,2,3,4)
+
+</code>
+
+
+<h3>访问元素</h3>
+
+<code>
+
+x[1]
+
+x[2:4]
+
+</code>
+
+
+<h3>计算</h3>
+
+<code>
+
+mean(x)
+
+sum(x)
+
+</code>
+
+`,
+
+
+matrix:`
+
+<h2>矩阵</h2>
+
+
+<h3>创建矩阵</h3>
+
+<code>
+
+m <- matrix(
+1:9,
+nrow=3
+)
+
+</code>
+
+
+<h3>访问</h3>
+
+<code>
+
+m[1,2]
+
+</code>
+
+`,
+
+
+dataframe:`
+
+<h2>数据框 dataframe</h2>
+
+
+<h3>创建</h3>
+
+<code>
+
+df <- data.frame(
+
+name=c("A","B"),
+
+age=c(20,21)
+
+)
+
+</code>
+
+
+<h3>查看数据</h3>
+
+<code>
+
+head(df)
+
+summary(df)
+
+</code>
+
+`,
+
+
+file:`
+
+<h2>文件读写</h2>
+
+
+<h3>读取CSV</h3>
+
+<code>
+
+data <- read.csv(
+"data.csv"
+)
+
+</code>
+
+
+<h3>保存CSV</h3>
+
+<code>
+
+write.csv(
+data,
+"output.csv"
+)
+
+</code>
+
+`,
+
+
+apply:`
+
+<h2>apply族函数</h2>
+
+
+<h3>apply</h3>
+
+<code>
+
+apply(
+矩阵,
+方向,
+函数
+)
+
+</code>
+
+
+<h3>案例</h3>
+
+<code>
+
+m <- matrix(1:9,3)
+
+apply(
+m,
+1,
+sum
+)
+
+</code>
+
+
+`
+
+};
+
+
+
+function show(type){
+
+document.getElementById("content").innerHTML=
+`
+<div class="card">
+${data[type]}
+</div>
+`;
+
+}
+
+
+</script>
+
+
+</body>
+</html>
